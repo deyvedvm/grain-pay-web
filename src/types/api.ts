@@ -79,12 +79,35 @@ export type Goal = {
   deadline?: string
 }
 
+export type IncomeSource =
+  | "SALARY"
+  | "FREELANCE"
+  | "INVESTMENT"
+  | "REFUND"
+  | "OTHER"
+
+export type CategorySummary = {
+  categoryName: string
+  total: number
+}
+
+export type SourceSummary = {
+  source: IncomeSource
+  total: number
+}
+
 export type DashboardSummary = {
-  month: string
   totalIncome: number
-  totalExpense: number
+  totalExpenses: number
   balance: number
-  byCategory: { categoryId: number; categoryName: string; total: number }[]
+  expensesByCategory: CategorySummary[]
+  incomeBySource: SourceSummary[]
+}
+
+export type ApiEnvelope<T> = {
+  data: T
+  status: number
+  message: string
 }
 
 export type Page<T> = {
