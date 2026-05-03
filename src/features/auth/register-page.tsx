@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
@@ -8,38 +8,48 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuthStore } from "@/store/auth-store"
-import { useLogin } from "@/features/auth/use-auth"
-import { loginSchema, type LoginFormValues } from "@/features/auth/auth-schemas"
+import { useRegister } from "@/features/auth/use-auth"
+import {
+  registerSchema,
+  type RegisterFormValues,
+} from "@/features/auth/auth-schemas"
 
-export function LoginPage() {
+export function RegisterPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = (location.state as { from?: Location } | null)?.from?.pathname ?? "/"
 
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: { email: "", password: "" },
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { name: "", email: "", password: "" },
   })
 
-  const login = useLogin()
+  const register = useRegister()
 
   useEffect(() => {
-    if (login.isSuccess) navigate(from, { replace: true })
-  }, [login.isSuccess, navigate, from])
+    if (register.isSuccess) navigate("/", { replace: true })
+  }, [register.isSuccess, navigate])
 
   if (isAuthenticated) return <Navigate to="/" replace />
 
-  const onSubmit = form.handleSubmit((values) => login.mutate(values))
+  const onSubmit = form.handleSubmit((values) => register.mutate(values))
 
   return (
     <div className="min-h-svh flex items-center justify-center bg-muted/30 px-4">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Entrar no Grain Pay</CardTitle>
+          <CardTitle>Criar conta no Grain Pay</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={onSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Nome</Label>
+              <Input id="name" autoComplete="name" {...form.register("name")} />
+              {form.formState.errors.name && (
+                <p className="text-xs text-destructive">
+                  {form.formState.errors.name.message}
+                </p>
+              )}
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">E-mail</Label>
               <Input
@@ -59,7 +69,7 @@ export function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 {...form.register("password")}
               />
               {form.formState.errors.password && (
@@ -68,14 +78,14 @@ export function LoginPage() {
                 </p>
               )}
             </div>
-            <Button type="submit" className="w-full" disabled={login.isPending}>
-              {login.isPending && <Loader2 className="size-4 animate-spin" />}
-              Entrar
+            <Button type="submit" className="w-full" disabled={register.isPending}>
+              {register.isPending && <Loader2 className="size-4 animate-spin" />}
+              Criar conta
             </Button>
             <p className="text-center text-sm text-muted-foreground">
-              Não tem conta?{" "}
-              <Link to="/register" className="text-primary hover:underline">
-                Cadastre-se
+              Já tem conta?{" "}
+              <Link to="/login" className="text-primary hover:underline">
+                Entrar
               </Link>
             </p>
           </form>

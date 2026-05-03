@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { AppShell } from "@/components/layout/app-shell"
 import { ProtectedRoute } from "@/components/layout/protected-route"
 import { LoginPage } from "@/features/auth/login-page"
+import { RegisterPage } from "@/features/auth/register-page"
 import { DashboardPage } from "@/features/dashboard/dashboard-page"
 
 function Placeholder({ title }: { title: string }) {
@@ -17,6 +18,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route
         element={
           <ProtectedRoute>
