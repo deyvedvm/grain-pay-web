@@ -13,9 +13,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
+import { useAccountsList } from "@/features/accounts/use-accounts"
+import { useCategoriesList } from "@/features/categories/use-categories"
 import {
-  useAccountsQuery,
-  useCategoriesQuery,
   useCreateTransaction,
   useUpdateTransaction,
 } from "@/features/transactions/use-transactions"
@@ -106,8 +106,8 @@ export function TransactionFormDialog({ open, onOpenChange, transaction }: Props
   }, [open, transaction, form])
 
   const type = form.watch("type")
-  const categories = useCategoriesQuery()
-  const accounts = useAccountsQuery()
+  const categories = useCategoriesList()
+  const accounts = useAccountsList()
   const createMutation = useCreateTransaction()
   const updateMutation = useUpdateTransaction()
   const isSubmitting = createMutation.isPending || updateMutation.isPending

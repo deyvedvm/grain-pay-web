@@ -77,6 +77,20 @@ export type Transaction = {
   updatedAt?: string
 }
 
+export type CreateCategoryPayload = {
+  name: string
+  type: TransactionType
+  icon?: string
+  color?: string
+}
+
+export type CreateAccountPayload = {
+  name: string
+  type: AccountType
+  bankName?: string
+  balance: number
+}
+
 export type CreateTransactionPayload = {
   type: TransactionType
   amount: number

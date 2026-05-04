@@ -2,8 +2,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import { toast } from "sonner"
 import * as transactionsApi from "@/api/transactions"
-import { listCategories } from "@/api/categories"
-import { listAccounts } from "@/api/accounts"
 import type {
   CreateTransactionPayload,
   TransactionFilters,
@@ -22,22 +20,6 @@ export function useTransactionsList(filters: TransactionFilters, page: number) {
     queryFn: () =>
       transactionsApi.listTransactions({ ...filters, page, size: PAGE_SIZE }),
     placeholderData: (prev) => prev,
-  })
-}
-
-export function useCategoriesQuery() {
-  return useQuery({
-    queryKey: ["categories"],
-    queryFn: listCategories,
-    staleTime: 5 * 60 * 1000,
-  })
-}
-
-export function useAccountsQuery() {
-  return useQuery({
-    queryKey: ["accounts"],
-    queryFn: listAccounts,
-    staleTime: 5 * 60 * 1000,
   })
 }
 
