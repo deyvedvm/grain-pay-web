@@ -4,6 +4,7 @@ import { ProtectedRoute } from "@/components/layout/protected-route"
 import { LoginPage } from "@/features/auth/login-page"
 import { RegisterPage } from "@/features/auth/register-page"
 import { AccountsPage } from "@/features/accounts/accounts-page"
+import { BudgetsPage } from "@/features/budgets/budgets-page"
 import { CategoriesPage } from "@/features/categories/categories-page"
 import { DashboardPage } from "@/features/dashboard/dashboard-page"
 import { TransactionsPage } from "@/features/transactions/transactions-page"
@@ -33,7 +34,7 @@ export function AppRoutes() {
         <Route path="transactions" element={<TransactionsPage />} />
         <Route path="accounts" element={<AccountsPage />} />
         <Route path="categories" element={<CategoriesPage />} />
-        <Route path="budgets" element={<Placeholder title="Orçamentos" />} />
+        <Route path="budgets" element={<BudgetsPage />} />
         <Route path="goals" element={<Placeholder title="Metas" />} />
         <Route path="reports" element={<Placeholder title="Relatórios" />} />
         <Route path="recurring" element={<Placeholder title="Recorrentes" />} />

@@ -119,12 +119,20 @@ export type TransactionFilters = {
 
 export type Budget = {
   id: number
-  categoryId: number
-  categoryName?: string
+  category: Category
   limitAmount: number
   spent: number
   percentage: number
   alert: boolean
+  month: number
+  year: number
+  createdAt?: string
+  updatedAt?: string
+}
+
+export type CreateBudgetPayload = {
+  categoryId: number
+  limitAmount: number
   month: number
   year: number
 }
