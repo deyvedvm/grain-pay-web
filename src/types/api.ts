@@ -18,14 +18,22 @@ export type RegisterRequest = {
 export type TransactionType = "INCOME" | "EXPENSE"
 
 export type PaymentType =
+  | "Money"
   | "PIX"
-  | "CREDIT_CARD"
-  | "DEBIT_CARD"
-  | "MONEY"
+  | "Credit Card"
+  | "Debit Card"
   | "VR"
   | "VA"
-  | "BANK_TRANSFER"
-  | "BOLETO"
+  | "Bank Transfer"
+  | "Boleto"
+
+export type AccountType =
+  | "CHECKING"
+  | "SAVINGS"
+  | "CREDIT_CARD"
+  | "WALLET"
+  | "VR"
+  | "VA"
 
 export type GoalStatus = "ACTIVE" | "COMPLETED" | "ABANDONED"
 export type GoalPriority = "LOW" | "MEDIUM" | "HIGH"
@@ -34,14 +42,19 @@ export type RecurrenceFrequency = "DAILY" | "WEEKLY" | "MONTHLY" | "YEARLY"
 export type Category = {
   id: number
   name: string
+  type: TransactionType
+  icon?: string
   color?: string
+  createdAt?: string
 }
 
 export type Account = {
   id: number
   name: string
-  type?: string
-  initialBalance?: number
+  type: AccountType
+  bankName?: string
+  balance: number
+  createdAt?: string
 }
 
 export type Transaction = {
@@ -50,10 +63,44 @@ export type Transaction = {
   amount: number
   date: string
   description: string
-  paymentType: PaymentType
-  categoryId: number
-  accountId?: number
+  paymentType?: PaymentType
+  category?: Category
+  account?: Account
+  notes?: string
+  tags?: string[]
+  userId?: number
   installments?: number
+  currentInstallment?: number
+  isRecurring?: boolean
+  source?: IncomeSource
+  createdAt?: string
+  updatedAt?: string
+}
+
+export type CreateTransactionPayload = {
+  type: TransactionType
+  amount: number
+  date: string
+  description: string
+  paymentType?: PaymentType
+  categoryId?: number | null
+  accountId?: number | null
+  notes?: string
+  tags?: string[]
+  installments?: number | null
+  currentInstallment?: number | null
+  isRecurring?: boolean
+  source?: IncomeSource | null
+}
+
+export type TransactionFilters = {
+  type?: TransactionType
+  startDate?: string
+  endDate?: string
+  categoryId?: number
+  paymentType?: PaymentType
+  minAmount?: number
+  maxAmount?: number
 }
 
 export type Budget = {

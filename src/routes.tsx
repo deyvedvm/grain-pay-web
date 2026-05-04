@@ -4,6 +4,7 @@ import { ProtectedRoute } from "@/components/layout/protected-route"
 import { LoginPage } from "@/features/auth/login-page"
 import { RegisterPage } from "@/features/auth/register-page"
 import { DashboardPage } from "@/features/dashboard/dashboard-page"
+import { TransactionsPage } from "@/features/transactions/transactions-page"
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -27,7 +28,7 @@ export function AppRoutes() {
         }
       >
         <Route index element={<DashboardPage />} />
-        <Route path="transactions" element={<Placeholder title="Transações" />} />
+        <Route path="transactions" element={<TransactionsPage />} />
         <Route path="accounts" element={<Placeholder title="Contas" />} />
         <Route path="categories" element={<Placeholder title="Categorias" />} />
         <Route path="budgets" element={<Placeholder title="Orçamentos" />} />
