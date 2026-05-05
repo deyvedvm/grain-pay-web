@@ -145,7 +145,28 @@ export type Goal = {
   progress: number
   status: GoalStatus
   priority: GoalPriority
-  deadline?: string
+  deadline: string
+  description?: string
+  createdAt?: string
+  updatedAt?: string
+}
+
+export type CreateGoalPayload = {
+  name: string
+  targetAmount: number
+  deadline: string
+  description?: string
+  priority: GoalPriority
+}
+
+export type UpdateGoalPayload = {
+  name: string
+  targetAmount: number
+  currentAmount: number
+  deadline: string
+  description?: string
+  priority: GoalPriority
+  status: GoalStatus
 }
 
 export type IncomeSource =
