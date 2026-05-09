@@ -194,6 +194,26 @@ export type DashboardSummary = {
   incomeBySource: SourceSummary[]
 }
 
+export type MonthlyReportItem = {
+  month: number
+  totalIncome: number
+  totalExpenses: number
+  balance: number
+}
+
+export type YearlyReportItem = {
+  year: number
+  totalIncome: number
+  totalExpenses: number
+  balance: number
+}
+
+export type CategoryReportItem = {
+  categoryName: string
+  totalIncome: number
+  totalExpenses: number
+}
+
 export type ApiEnvelope<T> = {
   data: T
   status: number

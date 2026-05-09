@@ -8,6 +8,7 @@ import { BudgetsPage } from "@/features/budgets/budgets-page"
 import { CategoriesPage } from "@/features/categories/categories-page"
 import { DashboardPage } from "@/features/dashboard/dashboard-page"
 import { GoalsPage } from "@/features/goals/goals-page"
+import { ReportsPage } from "@/features/reports/reports-page"
 import { TransactionsPage } from "@/features/transactions/transactions-page"
 
 function Placeholder({ title }: { title: string }) {
@@ -37,7 +38,7 @@ export function AppRoutes() {
         <Route path="categories" element={<CategoriesPage />} />
         <Route path="budgets" element={<BudgetsPage />} />
         <Route path="goals" element={<GoalsPage />} />
-        <Route path="reports" element={<Placeholder title="Relatórios" />} />
+        <Route path="reports" element={<ReportsPage />} />
         <Route path="recurring" element={<Placeholder title="Recorrentes" />} />
         <Route path="import-export" element={<Placeholder title="Importar/Exportar" />} />
       </Route>
