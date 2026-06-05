@@ -214,6 +214,18 @@ export type CategoryReportItem = {
   totalExpenses: number
 }
 
+export type ImportRowError = {
+  line: number
+  reason: string
+}
+
+export type ImportResult = {
+  imported: number
+  duplicates: number
+  failed: number
+  errors: ImportRowError[]
+}
+
 export type ApiEnvelope<T> = {
   data: T
   status: number

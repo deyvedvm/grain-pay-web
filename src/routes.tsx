@@ -8,6 +8,7 @@ import { BudgetsPage } from "@/features/budgets/budgets-page"
 import { CategoriesPage } from "@/features/categories/categories-page"
 import { DashboardPage } from "@/features/dashboard/dashboard-page"
 import { GoalsPage } from "@/features/goals/goals-page"
+import { ImportExportPage } from "@/features/import-export/import-export-page"
 import { ReportsPage } from "@/features/reports/reports-page"
 import { TransactionsPage } from "@/features/transactions/transactions-page"
 
@@ -40,7 +41,7 @@ export function AppRoutes() {
         <Route path="goals" element={<GoalsPage />} />
         <Route path="reports" element={<ReportsPage />} />
         <Route path="recurring" element={<Placeholder title="Recorrentes" />} />
-        <Route path="import-export" element={<Placeholder title="Importar/Exportar" />} />
+        <Route path="import-export" element={<ImportExportPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
