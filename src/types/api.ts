@@ -169,6 +169,35 @@ export type UpdateGoalPayload = {
   status: GoalStatus
 }
 
+export type RecurringTransaction = {
+  id: number
+  description: string
+  amount: number
+  type: TransactionType
+  paymentType?: PaymentType
+  category?: Category
+  account?: Account
+  recurrenceType: RecurrenceFrequency
+  startDate: string
+  endDate?: string
+  dayOfMonth?: number
+  isActive: boolean
+}
+
+// O backend usa o mesmo request para criar e atualizar.
+export type CreateRecurringTransactionPayload = {
+  description: string
+  amount: number
+  type: TransactionType
+  paymentType?: PaymentType
+  categoryId?: number | null
+  accountId?: number | null
+  recurrenceType: RecurrenceFrequency
+  startDate: string
+  endDate?: string | null
+  dayOfMonth?: number | null
+}
+
 export type IncomeSource =
   | "SALARY"
   | "FREELANCE"

@@ -9,17 +9,9 @@ import { CategoriesPage } from "@/features/categories/categories-page"
 import { DashboardPage } from "@/features/dashboard/dashboard-page"
 import { GoalsPage } from "@/features/goals/goals-page"
 import { ImportExportPage } from "@/features/import-export/import-export-page"
+import { RecurringPage } from "@/features/recurring/recurring-page"
 import { ReportsPage } from "@/features/reports/reports-page"
 import { TransactionsPage } from "@/features/transactions/transactions-page"
-
-function Placeholder({ title }: { title: string }) {
-  return (
-    <div className="space-y-2">
-      <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-      <p className="text-sm text-muted-foreground">Em construção.</p>
-    </div>
-  )
-}
 
 export function AppRoutes() {
   return (
@@ -40,7 +32,7 @@ export function AppRoutes() {
         <Route path="budgets" element={<BudgetsPage />} />
         <Route path="goals" element={<GoalsPage />} />
         <Route path="reports" element={<ReportsPage />} />
-        <Route path="recurring" element={<Placeholder title="Recorrentes" />} />
+        <Route path="recurring" element={<RecurringPage />} />
         <Route path="import-export" element={<ImportExportPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
